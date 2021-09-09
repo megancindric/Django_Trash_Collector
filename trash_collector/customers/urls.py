@@ -11,4 +11,7 @@ from . import views
 app_name = "customers"
 urlpatterns = [
     path('', views.index, name="index"),
+    path('register/', views.create, name='create'),
+    #Pickup day
+    #Suspending service
 ]
