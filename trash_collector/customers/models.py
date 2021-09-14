@@ -20,3 +20,6 @@ class Customer(models.Model):
     suspension_start = models.DateField(default=datetime.datetime(2000, 1, 1)) #Defaulte date as 1/1/2000
     suspension_end = models.DateField(default=datetime.datetime(2000, 1, 1)) #Defaulte date as 1/1/2000
     current_balance = models.DecimalField(decimal_places = 2, default=0.00, max_digits=5)
+
+    def __str__(self):
+        return self.user.username
