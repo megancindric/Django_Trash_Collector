@@ -57,3 +57,20 @@ def change_pickup(request):
             'single_customer': logged_in_customer
         }
         return render(request, 'customers/change_pickup.html', context)
+
+def extra_pickup(request):
+    logged_in_customer = Customer.objects.get(user=request.user)
+    if request.method == "POST":
+
+
+        #TODO - adding an extra option to DELETE extra pickups? (Could be option on details page?  Separate view?  Idk)
+
+        logged_in_customer.extra_pickup_day = request.POST.get('extra_pickup_day')
+        logged_in_customer.has_extra_pickup = True
+        logged_in_customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        context = {
+            'single_customer': logged_in_customer
+        }
+        return render(request, 'customers/extra_pickup.html', context)

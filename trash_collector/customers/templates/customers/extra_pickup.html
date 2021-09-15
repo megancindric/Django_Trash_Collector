@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Schedule an Extra Pickup {% endblock %}
+
+{% block header %} Schedule an Extra Pickup {% endblock %}
+
+{% block content %}
+<h2>Schedule One-Time Pickup:</h2>
+
+<form action ="{% url 'customers:extra_pickup' %}", method="POST">
+    {% csrf_token %}
+    <label for="extra_pickup_day">Select Pickup Date</label>
+    <input type="date" name="extra_pickup_day" id="extra_pickup_day">
+    <input type="submit" value="Schedule">
+</form>
+{% endblock %}

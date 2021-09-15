@@ -13,7 +13,9 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('create/', views.create, name='create'),
     path('details/', views.details, name='details'),
-    path('change_pickup/', views.change_pickup, name='change_pickup')
+    path('change_pickup/', views.change_pickup, name='change_pickup'),
+    path('extra_pickup/', views.extra_pickup, name='extra_pickup')
+
     #Pickup day
     #Suspending service
 ]

@@ -16,4 +16,8 @@
 </br>
 <h3>Pickup Day: {{ single_customer.pickup_day }}</h3>
 <h3>Current Account Balance: {{ single_customer.current_balance }}</h3>
+
+{% if single_customer.has_extra_pickup == True %}
+<h3>Your 1-time pickup is scheduled for: {{ single_customer.extra_pickup_day }}</h3>
+{% endif %}
 {% endblock %}

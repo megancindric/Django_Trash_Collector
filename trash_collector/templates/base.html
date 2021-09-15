@@ -18,7 +18,7 @@
         <a class="btn btn-outline-success" href="{% url 'customers:index' %}">Home</a>
         <a class="btn btn-outline-success" href="{% url 'customers:details' %}">My Account</a>
         <a class="btn btn-outline-success" href="{% url 'customers:change_pickup' %}">Change Pickup Day</a>
-        <p>Schedule pickup</p>
+        <a class="btn btn-outline-success" href="{% url 'customers:extra_pickup' %}">Schedule Extra Pickup</a>
         <p>Suspend service</p>
 
     {% elif group.name == "Employees" %}
