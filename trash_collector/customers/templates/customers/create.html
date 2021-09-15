@@ -12,7 +12,14 @@
         City: <input type="text", name="city", id="city"><br />
         State: <input type="text", name="state", id="state"><br />
         Zip Code: <input type="text", name="zip_code", id="zip_code"><br />
-        Pickup Day: <input type="text", name="pickup_day", id="pickup_day" placeholder="Monday"><br />
+        <label for="pickup_day">Select Pickup Day</label>
+        <select name="pickup_day" id="pickup_day">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+        </select><br />
         <input type="submit" value="Create Account!">
     </form>
     

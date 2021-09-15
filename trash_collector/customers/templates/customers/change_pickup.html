@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Change Pickup Day {% endblock %}
+
+{% block header %} Change Pickup Day {% endblock %}
+
+{% block content %}
+<h2>Update your pickup day:</h2>
+
+<form action ="{% url 'customers:change_pickup' %}", method="POST">
+    {% csrf_token %}
+    <label for="pickup_day">Select Pickup Day</label>
+    <select name="pickup_day" id="pickup_day">
+        <option value="Monday" selected>Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+    </select>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

@@ -45,3 +45,15 @@ def details(request):
         'single_customer': logged_in_customer
     }
     return render(request, 'customers/details.html', context)
+
+def change_pickup(request):
+    logged_in_customer = Customer.objects.get(user=request.user)
+    if request.method == "POST":
+        logged_in_customer.pickup_day = request.POST.get('pickup_day')
+        logged_in_customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        context = {
+            'single_customer': logged_in_customer
+        }
+        return render(request, 'customers/change_pickup.html', context)

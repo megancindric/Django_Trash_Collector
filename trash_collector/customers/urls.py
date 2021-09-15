@@ -12,7 +12,8 @@ app_name = "customers"
 urlpatterns = [
     path('', views.index, name="index"),
     path('create/', views.create, name='create'),
-    path('details/', views.details, name='details')
+    path('details/', views.details, name='details'),
+    path('change_pickup/', views.change_pickup, name='change_pickup')
     #Pickup day
     #Suspending service
 ]
