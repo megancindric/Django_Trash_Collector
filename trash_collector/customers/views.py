@@ -9,7 +9,6 @@ from .models import Customer
 
 
 def index(request):
-    # The following line will get the logged-in in user (if there is one) within any view function
     user = request.user
 
     try:
@@ -20,7 +19,7 @@ def index(request):
         return HttpResponseRedirect(reverse('customers:create'))
 
     # It will be necessary while creating a Customer/Employee to assign request.user as the user foreign key
-
+    
     print(user)
     return render(request, 'customers/index.html')
 
@@ -38,3 +37,11 @@ def create(request):
         return render(request, 'customers/index.html')
     else:
          return render(request, 'customers/create.html')
+
+def details(request):
+    logged_in_customer = Customer.objects.get(user=request.user)
+
+    context = {
+        'single_customer': logged_in_customer
+    }
+    return render(request, 'customers/details.html', context)

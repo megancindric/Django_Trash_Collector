@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} My Account {% endblock %}
+
+{% block header %} My Account {% endblock %}
+
+{% block content %}
+    Howdy {{ user.username }}!
+<h1>Howdy, {{ single_customer.first_name }}}</h1>
+<h2>Account Information:</h2>
+<h3>Name: {{ single_customer.first_name }} {{ single_customer.last_name }}</h3>
+<h3>Address: {{ single_customer.street_address }}</h3>
+<h3>City: {{ single_customer.city }}</h3>
+<h3>State: {{ single_customer.state }}</h3>
+<h3>Zip Code: {{ single_customer.zip_code }}</h3>
+</br>
+</br>
+<h3>Pickup Day: {{ single_customer.pickup_day }}</h3>
+<h3>Current Account Balance: {{ single_customer.current_balance }}</h3>
+{% endblock %}

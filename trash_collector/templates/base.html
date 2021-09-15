@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
-<body>
-{% if user.is_authenticated %}
-  {% for group in user.groups.all%}
-    {% if group.name == "Customers" %}
-    <p>Customer Navbar</p>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-flex">
+      <a class="navbar-brand">Hot Tra$h</a>
+      {% if user.is_authenticated %}
+      {% for group in user.groups.all%}
+      {% if group.name == "Customers" %}
+
+        <p>Customer Navbar</p>
+        <a class="btn btn-outline-success" href="{% url 'customers:index' %}">Home</a>
+        <a class="btn btn-outline-success" href="{% url 'customers:details' %}">My Account</a>
+        <p>Change pickup</p>
+        <p>Schedule pickup</p>
+        <p>Suspend service</p>
+
     {% elif group.name == "Employees" %}
+
     <p>Employee Navbar</p>
+    <a class="btn btn-outline-success" href="{% url 'employees:index' %}">Home</a>
+    <p>View upcoming pickups</p>
+
     {% endif %}
   {% endfor %}
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% endif %}
+  </div>
+</nav>
+<body>
   <main>
     <h1>{% block header %} {% endblock %}</h1>
     {% block content %}
