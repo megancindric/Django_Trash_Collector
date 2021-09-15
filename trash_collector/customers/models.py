@@ -22,4 +22,4 @@ class Customer(models.Model):
     current_balance = models.DecimalField(decimal_places = 2, default=0.00, max_digits=5)
 
     def __str__(self):
-        return self.user.username
+        return self.first_name + " " + self.last_name

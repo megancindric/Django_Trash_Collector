@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Customer
 # Create your views here.
 
@@ -16,7 +17,7 @@ def index(request):
         logged_in_customer = Customer.objects.get(user=user)
     except:
         # TODO: Redirect the user to a 'create' function to finish the registration process if no customer record found
-        pass
+        return HttpResponseRedirect(reverse('customers:create'))
 
     # It will be necessary while creating a Customer/Employee to assign request.user as the user foreign key
 
@@ -33,4 +34,6 @@ def create(request):
         pickup_day = request.POST.get('pickup_day')
         new_customer = Customer(first_name=first_name, last_name=last_name, street_address=street_address, state=state, zip_code=zip_code,pickup_day=pickup_day)
         new_customer.save()
-        return HttpResponseRedirect('customers:index')
+        return render(request, 'customers/index.html')
+    else:
+         return render(request, 'customers/create.html')

@@ -11,4 +11,4 @@ class Employee(models.Model):
     zip_code = models.IntegerField()
 
     def __str__(self):
-        return self.user.username
+        return self.first_name + " " + self.last_name
