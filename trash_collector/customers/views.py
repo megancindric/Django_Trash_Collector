@@ -74,3 +74,20 @@ def extra_pickup(request):
             'single_customer': logged_in_customer
         }
         return render(request, 'customers/extra_pickup.html', context)
+
+def suspend_service(request):
+    logged_in_customer = Customer.objects.get(user=request.user)
+    if request.method == "POST":
+
+
+        #TODO - adding an extra option to DELETE extra pickups? (Could be option on details page?  Separate view?  Idk)
+
+        logged_in_customer.suspension_start = request.POST.get('suspension_start')
+        logged_in_customer.suspension_end = request.POST.get('suspension_end')
+        logged_in_customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        context = {
+            'single_customer': logged_in_customer
+        }
+        return render(request, 'customers/suspend_service.html', context) 

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Suspend Service {% endblock %}
+
+{% block header %} Suspend Service {% endblock %}
+
+{% block content %}
+<h2>Suspend your Service:</h2>
+
+<form action ="{% url 'customers:suspend_service' %}", method="POST">
+    {% csrf_token %}
+    <label for="suspension_start">Select Suspension Start</label>
+    <input type="date" name="suspension_start" id="suspension_start">
+
+    <label for="suspension_end">Select Suspension End</label>
+    <input type="date" name="suspension_end" id="suspension_end">
+
+    <input type="submit" value="Suspend Service">
+</form>
+{% endblock %}
