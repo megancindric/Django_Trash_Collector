@@ -8,5 +8,6 @@ app_name = "employees"
 urlpatterns = [
     path('', views.index, name="index"),
     path('create/', views.create, name='create'),
+    path('my_accounts/', views.my_accounts, name='my_accounts'),
 
 ]

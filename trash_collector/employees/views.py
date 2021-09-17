@@ -8,16 +8,14 @@ import calendar
 
 # Create your views here.
 
-# TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
+#Displays pickupsf for:
+    #Customers in employee zip code, where pickup day is today & service is not suspended OR there is a 1-time pickup scheduled for today
 def index(request):
     user = request.user
 
     try:
         # This line inside the 'try' will return the customer record of the logged-in user if one exists
         logged_in_employee = Employee.objects.get(user=user)
-       
-
-
     except:
         return HttpResponseRedirect(reverse('employees:create'))
 
@@ -31,20 +29,36 @@ def index(request):
         if customer.has_extra_pickup and customer.extra_pickup_day == today:
             matching_customers.append(customer)
         elif customer.pickup_day == today_string and not is_suspended:
-        #Today's date needs to be > start and <
             matching_customers.append(customer)
-
-        #filter(zip_code=logged_in_employee.zip_code)
-        #Matches our zip
-        #Today is customer's pickup day
-        #Customer is not suspended
-        #Today is customer's 1-time pickup
     context = {
         'matching_customers': matching_customers
     }
     print(user)
     print(matching_customers)
     return render(request, 'employees/index.html', context)
+
+#Display all ccustomers in zip code, option to filter by pickup day
+def my_accounts(request):
+    user = request.user
+    logged_in_employee = Employee.objects.get(user=user)
+    Customer = apps.get_model('customers.Customer')
+    matching_customers = []
+    
+    if(request.method == "POST" and request.POST.get("pickup_day") != "All"):
+        pickup_day = request.POST.get("pickup_day")
+        all_customers = Customer.objects.filter(pickup_day=pickup_day)
+    else:
+        all_customers = Customer.objects.all()
+
+    for customer in all_customers:
+        if customer.zip_code == logged_in_employee.zip_code:
+            matching_customers.append(customer)
+    
+    context = {
+        'matching_customers': matching_customers
+    }
+
+    return render(request, 'employees/my_accounts.html', context)
 
 def create(request):
     if request.method == "POST":
@@ -57,3 +71,7 @@ def create(request):
         return render(request, 'employees/index.html')
     else:
          return render(request, 'employees/create.html')
+
+def confirm_pickup(request):
+    pass
+#TODO - will select current customer, ask to confirm pickup, then on click will charge customer
