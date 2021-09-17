@@ -4,7 +4,7 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    Howdy Employee {{ user.username }}!
+    Howdy, {{ user.username }}!
 
   <h4>Today's Pickups</h4>
   <table>
@@ -12,6 +12,7 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Zip Code</th>
+      <th>Current Balance</th>
       <th>Confirm Pickup</th>
     </tr>
     {% for customer in matching_customers %}
@@ -19,14 +20,12 @@
       <td>{{customer.first_name}}</td>
       <td>{{customer.last_name}}</td>
       <td>{{customer.zip_code}}</td>
-      <td>Link to confirm pickup</td>
+      <td>{{customer.current_balance}}</td>
+      <td><a class="btn btn-sm btn-outline-success" href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+      </td>
     </tr>
     {% endfor %}
   </table>
-    {% for customer in matching_customers %}
-
-    {% endfor %}
-    <p>A table of non suspended matching zip code, today's date, or extra pickup date == today</p>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>

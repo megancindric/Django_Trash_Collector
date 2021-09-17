@@ -34,7 +34,6 @@ def index(request):
         'matching_customers': matching_customers
     }
     print(user)
-    print(matching_customers)
     return render(request, 'employees/index.html', context)
 
 #Display all ccustomers in zip code, option to filter by pickup day
@@ -72,6 +71,20 @@ def create(request):
     else:
          return render(request, 'employees/create.html')
 
-def confirm_pickup(request):
-    pass
+def confirm_pickup(request, customer_id):
+    Customer = apps.get_model('customers.Customer')
+    customer = Customer.objects.get(id=customer_id)
+
+
+    if request.method == "POST":
+        customer.current_balance -= 20
+        customer.save()
+        
+        return HttpResponseRedirect(reverse('employees:index'))
+    else:
+        context = {
+            'customer': customer
+        } 
+        return render(request, 'employees/confirm_pickup.html', context)
+
 #TODO - will select current customer, ask to confirm pickup, then on click will charge customer

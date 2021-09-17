@@ -29,10 +29,11 @@ def create(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         street_address = request.POST.get('street_address')
+        city = request.POST.get('city')
         state = request.POST.get('state')
         zip_code = request.POST.get('zip_code')
         pickup_day = request.POST.get('pickup_day')
-        new_customer = Customer(user=user, first_name=first_name, last_name=last_name, street_address=street_address, state=state, zip_code=zip_code,pickup_day=pickup_day)
+        new_customer = Customer(user=user, first_name=first_name, last_name=last_name, street_address=street_address,city=city, state=state, zip_code=zip_code,pickup_day=pickup_day)
         new_customer.save()
         return render(request, 'customers/index.html')
     else:
