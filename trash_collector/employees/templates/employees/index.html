@@ -6,7 +6,26 @@
   {% if user.is_authenticated %}
     Howdy Employee {{ user.username }}!
 
-    <h4>Today's Pickup</h4>
+  <h4>Today's Pickups</h4>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Zip Code</th>
+      <th>Confirm Pickup</th>
+    </tr>
+    {% for customer in matching_customers %}
+    <tr>
+      <td>{{customer.first_name}}</td>
+      <td>{{customer.last_name}}</td>
+      <td>{{customer.zip_code}}</td>
+      <td>Link to confirm pickup</td>
+    </tr>
+    {% endfor %}
+  </table>
+    {% for customer in matching_customers %}
+
+    {% endfor %}
     <p>A table of non suspended matching zip code, today's date, or extra pickup date == today</p>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
