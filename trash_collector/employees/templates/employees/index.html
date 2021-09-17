@@ -4,7 +4,10 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
+    Howdy Employee {{ user.username }}!
+
+    <h4>Today's Pickup</h4>
+    <p>A table of non suspended matching zip code, today's date, or extra pickup date == today</p>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
