@@ -14,7 +14,6 @@
       {% for group in user.groups.all%}
       {% if group.name == "Customers" %}
 
-        <p>Customer Navbar</p>
         <a class="btn btn-outline-success" href="{% url 'customers:index' %}">Home</a>
         <a class="btn btn-outline-success" href="{% url 'customers:details' %}">My Account</a>
         <a class="btn btn-outline-success" href="{% url 'customers:change_pickup' %}">Change Pickup Day</a>
@@ -23,7 +22,6 @@
 
     {% elif group.name == "Employees" %}
 
-    <p>Employee Navbar</p>
     <a class="btn btn-outline-success" href="{% url 'employees:index' %}">Home</a>
     <a class="btn btn-outline-success" href="{% url 'employees:my_accounts' %}">My Accounts</a>
 

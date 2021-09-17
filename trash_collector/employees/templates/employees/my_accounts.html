@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+{% block title %}{% block header %} My Accounts: {% endblock %}{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
-    Howdy Employee {{ user.username }}!
 
-  <h4>My Accounts:</h4>
   <form action ="{% url 'employees:my_accounts' %}", method="POST">
     {% csrf_token %}
     <label for="pickup_day">Filter by Pickup Day:</label>
@@ -40,7 +38,6 @@
     {% for customer in matching_customers %}
 
     {% endfor %}
-    <p>A table of non suspended matching zip code, today's date, or extra pickup date == today</p>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
